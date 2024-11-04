@@ -42,9 +42,7 @@ def filter_numbers(lst_data:list, param:str) -> list:
     """
 
     if param == PRIME:
-        res = [i for i in lst_data if is_prime(i)]
-    elif param == ODD:
-        res = [i for i in lst_data if i%2!=0]
-    else:
-        res = [i for i in lst_data if i%2==0]
-    return res
+        return list(filter(is_prime, lst_data))
+    if param == ODD:
+        return list(filter(lambda x: x%2!=0, lst_data))
+    return list(filter(lambda x: x%2==0, lst_data))
