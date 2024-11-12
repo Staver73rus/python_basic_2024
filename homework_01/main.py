@@ -4,7 +4,7 @@
 """
 
 
-def power_numbers(*args):
+def power_numbers(*args: tuple):
     """
     функция, которая принимает N целых чисел,
     и возвращает список квадратов этих чисел
@@ -21,7 +21,7 @@ EVEN = "even"
 PRIME = "prime"
 
 
-def is_prime(number):
+def is_prime(number: int):
     if number in (0, 1):
         return False
     for i in range(2, int(number**0.5) + 1):
