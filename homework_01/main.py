@@ -20,16 +20,18 @@ ODD = "odd"
 EVEN = "even"
 PRIME = "prime"
 
+
 def is_prime(number):
-    if number in (0,1):
+    if number in (0, 1):
         return False
-    for i in range(2, int(number ** 0.5) + 1):
+    for i in range(2, int(number**0.5) + 1):
         if number % i == 0:
             return False
-    
+
     return True
 
-def filter_numbers(lst_data:list, param:str) -> list:
+
+def filter_numbers(lst_data: list, param: str) -> list:
     """
     функция, которая на вход принимает список из целых чисел,
     и возвращает только чётные/нечётные/простые числа
@@ -43,6 +45,6 @@ def filter_numbers(lst_data:list, param:str) -> list:
 
     if param == PRIME:
         return list(filter(is_prime, lst_data))
-    if param == ODD:
-        return list(filter(lambda x: x%2!=0, lst_data))
-    return list(filter(lambda x: x%2==0, lst_data))
+    elif param == ODD:
+        return list(filter(lambda x: x % 2 != 0, lst_data))
+    return list(filter(lambda x: x % 2 == 0, lst_data))
