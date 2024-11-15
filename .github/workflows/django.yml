@@ -27,7 +27,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        ls
-        cd homework_09/bookshop
-        ls
         python homework_09/bookshop/manage.py test
