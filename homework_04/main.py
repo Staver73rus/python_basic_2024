@@ -32,7 +32,6 @@ async def add_users_to_db(session_db: Session, users: List[Dict]):
     session_db.add_all(user_objects)
     await session_db.commit()
 
-# Добавляет список постов в базу данных
 async def add_posts_to_db(session_db: Session, posts: List[Dict]):
     post_objects = []
     for post in posts:
@@ -51,22 +50,17 @@ async def async_main():
     """
     Основная функция
     """
-    # Создание таблиц (инициализация)
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    print("OK")
 
-    # Создание асинхронного HTTP клиента
     async with aiohttp.ClientSession() as http_session:
         try:
             users_task = fetch_users(http_session)
             posts_task = fetch_posts(http_session)
             users_data, posts_data = await asyncio.gather(users_task, posts_task)
         except Exception as e:
-            print(f"{e}")
             return
 
-    # Создание асинхронной сессии базы данных
     async with Session() as db_session:
         try:
             await add_users_to_db(db_session, users_data)
